@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	<br>
+	<br>
+	<h1 style="text-align: center;background-color: #04423E;color: white;">PRODUCTOS</h1>
+	<div class="container mt-4">
+		<div class="col-sm-12">
+			<form th:action="@{/guardarProducto}" th:object=${productos} method="POST">
+				<div class="card">
+					<div class="card-header">
+						<h3>Crear Producto</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+<!-- 							<label>IDProveedor</label> -->
+							<input th:field="*{idProducto}" type="hidden" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Nombre</label>
+							<input th:field="*{Nombre}" type="text" class="form-control form-control-sm" required/>
+						</div>
+						<div class="form-group">
+							<label for="categoria">Categoria</label>
+							<select type="text" th:field="*{categorias}" class="form-control form-control-sm" id="categoria" required>
+								<option 
+									th:each="categoria:${lstCategorias}"
+									th:value="${categoria.idCategoria}"
+									th:text="${categoria.Descripcion}">
+								</option>
+							</select>
+							<div class="form-group">
+							<label for="proveedores">Proveedor</label>
+							<select type="text" th:field="*{proveedores}" class="form-control form-control-sm" id="proveedores" required>
+								<option 
+									th:each="pro:${lstProveedores}"
+									th:value="${pro.IdProveedor}"
+									th:text="${pro.RazonSocial}">
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Descripcion</label>
+							<input th:field="*{Descripcion}" type="text" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label>Fecha Registro</label>
+							<input th:field="*{FechaRegistro}" type="date" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label>Precio</label>
+							<input th:field="*{precio}" type="text" class="form-control" required/>
+					</div>
+					<div class="form-group">
+							<label>Unidades en existencia</label>
+							<input th:field="*{existencia}" type="text" class="form-control" required/>
+					</div>
+					</div>
+					<div class="card-footer">
+						<input type="submit" value="Guardar" class="btn btn-success"/>
+					</div>
+					
+				</div>
+			</form>
+		</div>
+	</div>
+	<br><br>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

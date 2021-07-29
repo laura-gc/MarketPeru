@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	<br>
+	<br>
+	<h1 style="text-align: center;background-color: #04423E;color: white;">TIENDAS</h1>
+	<div class="container mt-4">
+		<div class="col-sm-12">
+			<form th:action="@{/guardarTienda}" th:object=${tienda} method="POST">
+				<div class="card">
+					<div class="card-header">
+						<h3>Crear Tienda</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+<!-- 							<label>IDProveedor</label> -->
+							<input th:field="*{idTienda}" type="hidden" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Nombre</label>
+							<input th:field="*{Nombre}" type="text" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label>Ruc</label>
+							<input th:field="*{Ruc}" type="text" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label>Direccion</label>
+							<input th:field="*{Direccion}" type="text" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label>Telefono</label>
+							<input th:field="*{Telefono}" type="text" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label>Fecha Registro</label>
+							<input th:field="*{FechaRegistro}" type="date" class="form-control" required/>
+						</div>
+					</div>
+					<div class="card-footer">
+						<input type="submit" value="Guardar" class="btn btn-success"/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br><br>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

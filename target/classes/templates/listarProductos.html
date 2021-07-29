@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+	<meta charset="UTF-8">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+<!-- 	<div class="container"> -->
+		<div>
+		<br><br>
+		<h1 style="text-align: center;background-color: #04423E;color: white;">PRODUCTOS</h1>
+		<a th:href="@{/crearProducto}" class="btn btn-primary">Agregar Nuevo Producto</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Categoria</th>	
+					<th>Proveedor</th>				
+					<th>Descripcion</th>
+					<th>FechaRegistro</th>
+					<th>Precio</th>
+					<th>Stock</th>
+					<th></th>
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="producto:${productos}">
+					<td th:text="${producto.idProducto}"></td>
+					<td th:text="${producto.nombre}"></td>
+					<td th:text="${producto.categorias.descripcion}"></td>
+					<td th:text="${producto.proveedores.RazonSocial}"></td>
+					<td th:text="${producto.descripcion}"></td>
+					<td th:text="${producto.FechaRegistro}"></td>
+					<td th:text="${producto.precio}"></td>
+					<td th:text="${producto.existencia}"></td>
+					<td>
+						<a th:href="@{/editarProducto/}+${producto.idProducto}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/eliminarProducto/}+${producto.idProducto}" class="btn btn-danger">Eliminar</a>
+
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<br><br>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

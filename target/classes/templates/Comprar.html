@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="plantilla/template :: head">
+	<meta charset="UTF-8">
+</head>       
+<body>
+<header th:replace="plantilla/template :: header"></header>
+	<br>
+	<br>
+<main layout:fragment="contenido">
+    <div class="col-12">
+    <br> 
+	<br>
+        <h2>Realizar Compra</h2>
+        <div th:classappend="'alert-' + (${clase != null} ? ${clase} : info)" th:if="${mensaje != null}"
+             th:text="${mensaje}"
+             class="alert">
+        </div>
+        <form th:object="${producto}" th:action="@{/agregar}" method="post">
+            <div class="form-group">
+                <label for="Nombre">Nombre</label>
+                <input autofocus autocomplete="off" th:field="*{Nombre}" id="Nombre"
+                       placeholder="Buscar"
+                       type="text"
+                       class="form-control">
+                <div class="invalid-feedback" th:errors="*{Nombre}"></div>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input autofocus autocomplete="off" th:field="*{cantidad}" id="cantidad"
+                       placeholder="Buscar" 
+                       type="text"
+                       class="form-control">
+                <div class="invalid-feedback" th:errors="*{cantidad}"></div>
+            </div>
+             <button type="submit" class="btn btn-warning">Agregar</button>
+        </form>
+        <br> 
+        <br> 
+        <form class="mb-2" th:action="@{/terminar}" method="post">
+            <button type="submit" class="btn btn-success">Terminar&nbsp;<i class="fa fa-check"></i>
+            </button>
+            <a th:href="@{/limpiar}" class="btn btn-danger">Cancelar compra&nbsp;<i
+                    class="fa fa-trash"></i>
+            </a>
+        </form>
+        <h1 th:text="${'Total: ' + total}"></h1>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Precio</th> 
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Quitar de lista</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="producto, iterador : ${session.carrito}">
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.codigo}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td th:text="${producto.cantidad}"></td>
+                    <td th:text="${producto.total}"></td>
+                    <td>
+                        <form th:action="@{/quitar/} + ${iterador.index}" method="post">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<br><br>
+	<br><br>
+<footer th:replace="plantilla/template :: footer"></footer>
+</body>

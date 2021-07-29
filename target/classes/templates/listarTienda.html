@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+	<meta charset="UTF-8">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+<!-- 	<div class="container"> -->
+		<div>
+		<br><br>
+		<h1 style="text-align: center;background-color: #04423E;color: white;">TIENDAS</h1>
+		<a th:href="@{/crearTienda}" class="btn btn-primary">Agregar Nueva Tienda</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>IDTienda</th>
+					<th>NOMBRE</th>
+					<th>RUC</th>
+					<th>DIRECCION</th>
+					<th>TELEFONO</th>
+					<th>FECHA REGISTRO</th>
+					<th></th>
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="tienda:${tienda}">
+					<td th:text="${tienda.IdTienda}"></td>
+					<td th:text="${tienda.Nombre}"></td>
+					<td th:text="${tienda.Ruc}"></td>
+					<td th:text="${tienda.Direccion}"></td>
+					<td th:text="${tienda.Telefono}"></td>
+					<td th:text="${tienda.FechaRegistro}"></td>
+					<td>
+						<a th:href="@{/editarTienda/}+${tienda.IdTienda}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/eliminarTienda/}+${tienda.IdTienda}" class="btn btn-danger">Eliminar</a>
+
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+	<br><br>
+	<br><br>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

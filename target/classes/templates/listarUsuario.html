@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+	<meta charset="UTF-8">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+<!-- 	<div class="container"> -->
+		<div>
+		<br><br>
+		<h1 style="text-align: center;background-color: #04423E;color: white;">Empleados</h1>
+		<a th:href="@{/crearUsuario}" class="btn btn-primary">Agregar Nuevo Empleado</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Correo</th>
+					<th>Usuario</th>					
+					<th>Numero de Documento</th>
+					<th>Tienda</th>
+					<th>FechaRegistro</th>
+					<th></th>
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="usuario:${usuario}">
+					<td th:text="${usuario.idUsuario}"></td>
+					<td th:text="${usuario.nombres}"></td>
+					<td th:text="${usuario.apellidos}"></td>
+					<td th:text="${usuario.correo}"></td>
+					<td th:text="${usuario.usuario}"></td> 
+					<td th:text="${usuario.Tipo_Documento}"></td>
+					<td th:text="${usuario.tienda.nombre}"></td> 
+					<td th:text="${usuario.FechaRegistro}"></td>
+					<td>
+						<a th:href="@{/editarUsuario/}+${usuario.idUsuario}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/eliminarUsuario/}+${usuario.idUsuario}" class="btn btn-danger">Eliminar</a>
+
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+	<meta charset="UTF-8">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+<!-- 	<div class="container"> -->
+		<div>
+		<br><br>
+		<h1 style="text-align: center;background-color: #04423E;color: white;">COMPRAS</h1>
+		<a th:href="@{/crearCompra}" class="btn btn-primary">Agregar Nueva Compra</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>IDCompra</th>
+					<th>Usuario</th>
+					<th>Proveedor</th>
+					<th>Tienda</th>
+					<th>Total Costo</th>
+					<th>Fecha Compra</th>
+					<th></th>
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="compra:${compra}">
+					<td th:text="${compra.idCompra}"></td>
+					<td th:text="${compra.Usuario.Nombres}+${compra.Usuario.Apellidos}"></td>
+					<td th:text="${compra.proveedores.RazonSocial}"></td>
+					<td th:text="${compra.Tienda.Nombre}"></td>
+					<td th:text="${compra.TotalCosto}"></td>
+					<td th:text="${compra.FechaCompra}"></td>
+					<td>
+						<a th:href="@{/editarCompra/}+${compra.idCompra}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/eliminarCompra/}+${compra.idCompra}" class="btn btn-danger">Eliminar</a>
+						<a href="#" class="btn btn-info">Ver Detalle de Compra</a>
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
