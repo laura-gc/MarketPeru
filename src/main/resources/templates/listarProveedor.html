@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head th:replace="plantilla/template :: head">
+	<meta charset="UTF-8">	
+</head>
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+<!-- 	<div class="container"> -->
+		<div>
+		<br><br>
+		<h1 style="text-align: center;background-color: #04423E;color: white;">PROVEEDORES</h1>
+		<a th:href="@{/crearProveedor}" class="btn btn-primary">Agregar Nuevo Proveedor</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Ruc</th>
+					<th>Nombre</th>
+					<th>Telefono</th>
+					<th>Correo</th>
+					<th>Direccion</th>
+					<th>Foto</th>
+					<th>Fecha</th>
+					<th></th>
+				</tr>				
+			</thead>
+			<tbody>
+				<tr th:each="proveedor:${proveedores}">
+					<td th:text="${proveedor.IdProveedor}"></td>
+					<td th:text="${proveedor.Ruc}"></td>
+					<td th:text="${proveedor.RazonSocial}"></td>
+					<td th:text="${proveedor.Telefono}"></td>
+					<td th:text="${proveedor.Correo}"></td>
+					<td th:text="${proveedor.Direccion}"></td>
+					<td><img th:src="@{imgProveedor/}+${proveedor.Foto}" width="100px" height="100px"></td>
+					<td th:text="${proveedor.FechaRegistro}"></td>
+					<td>
+						<a th:href="@{/editarProveedor/}+${proveedor.IdProveedor}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/eliminarProveedor/}+${proveedor.IdProveedor}" class="btn btn-danger">Eliminar</a>
+
+					</td>
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<br><br>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+</html>
