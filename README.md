@@ -1,2 +1,2 @@
-# SpringProject
-Proyecto Final de lenguaje de programación avanzado
+# Super Market
+Sistema de administracion de inventario para un supermercado
